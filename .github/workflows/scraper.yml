@@ -18,9 +18,14 @@ jobs:
       with:
         r-version: '4.2.0'
         
-    - name: Install dependencies
+    - name: Install system dependencies
       run: |
-        Rscript -e 'install.packages(c("here", "rvest", "dplyr", "httr"), repos="https://cloud.r-project.org")'
+        sudo apt-get update
+        sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+        
+    - name: Install R packages
+      run: |
+        Rscript -e 'install.packages(c("here", "rvest", "dplyr", "httr"), repos="https://cloud.r-project.org", dependencies=TRUE)'
         
     - name: Run scraping script
       run: Rscript scraper.R
