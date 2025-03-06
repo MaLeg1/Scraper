@@ -5,7 +5,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     git \
     libssl-dev \
-    libcurl4-openssl-dev
+    libcurl4-openssl-dev \
+    libxml2-dev
 
 # Copy your script
 COPY scraper.R .
